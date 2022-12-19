@@ -10,6 +10,11 @@ async function f() {
         max_tokens: 7,
         temperature: 0,
     });
-    console.log(response.data);
+    try {
+        console.log(response.data);
+    } catch (err) {
+        console.log(err);
+    }
+
 }
 f();
