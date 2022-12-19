@@ -10,6 +10,6 @@ async function f() {
         max_tokens: 7,
         temperature: 0,
     });
-    console.log(response);
+    console.log(response.id);
 }
 f();
