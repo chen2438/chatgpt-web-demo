@@ -11,7 +11,7 @@ async function f() {
         temperature: 0,
     });
     try {
-        console.log(response.data.choices);
+        console.log(response.data.choices[0].text);
     } catch (err) {
         console.log(err);
     }
