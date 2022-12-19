@@ -22,12 +22,11 @@ http.createServer(function (req, res) {
         // 设置响应头部信息及编码
         res.writeHead(200, { 'Content-Type': 'text/html; charset=utf8' });
 
-        if (body.name && body.url) { // 输出提交的数据
-            res.write("网站名：" + body.name);
-            res.write("<br>");
-            res.write("网站 URL：" + body.url);
+        if (body.username) { // 输出提交的数据
+            res.write(body.username);
+            res.write('<br>success');
         } else {  // 输出表单
-            res.write(postHTML);
+            // res.write(postHTML);
         }
         res.end();
     });
