@@ -7,11 +7,11 @@ async function f() {
     const response = await openai.createCompletion({
         model: "text-davinci-003",
         prompt: "Say this is a test",
-        max_tokens: 7,
+        max_tokens: 20,
         temperature: 0,
     });
     try {
-        console.log(response.data);
+        console.log(response.data.choices);
     } catch (err) {
         console.log(err);
     }
