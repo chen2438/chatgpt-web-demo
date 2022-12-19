@@ -12,7 +12,7 @@ var postHTML =
     '</body></html>';
 
 http.createServer(function (req, res) {
-    echo("running");
+    console.log("running");
     var body = "";
     req.on('data', function (chunk) {
         body += chunk;
