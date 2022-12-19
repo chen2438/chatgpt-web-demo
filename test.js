@@ -24,14 +24,14 @@ http.createServer(function (req, res) {
             });
             try {
                 console.log(response.data.choices[0].text);
-                res.write(response);
+                res.write(response.data.choices[0].text);
+                res.write('<br>END');
+                res.end();
             } catch (err) {
                 console.log(err);
             }
 
         }
         f();
-        res.write('<br>END');
-        res.end();
     });
 }).listen(3000);
