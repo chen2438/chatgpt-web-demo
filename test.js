@@ -15,7 +15,7 @@ http.createServer(function (req, res) {
         body = querystring.parse(body);
         res.writeHead(200, { 'Content-Type': 'text/html; charset=utf8' });
         async function f() {
-            if (body.prompt.length == 0) {
+            if (body.prompt) {
                 res.write(html1);
                 res.write(html2);
                 res.end();
