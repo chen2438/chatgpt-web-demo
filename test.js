@@ -14,13 +14,15 @@ http.createServer(function (req, res) {
     req.on('end', function () {
         body = querystring.parse(body);
         res.writeHead(200, { 'Content-Type': 'text/html; charset=utf8' });
+        console.log(body.prompt);
+        return;
         async function f() {
             if (body.prompt) {
                 res.write(html1);
                 res.write(html2);
                 res.end();
             } else {
-                console.log(body.prompt);
+
                 const { Configuration, OpenAIApi } = require("openai");
                 const configuration = new Configuration({
                     apiKey: process.env.OPENAI_API_KEY,
@@ -37,6 +39,7 @@ http.createServer(function (req, res) {
                     res.write(html1);
                     res.write(body.prompt);
                     res.write(response.data.choices[0].text);
+                    res.write("\n");
                     res.write(html2);
                     res.end();
                 } catch (err) {

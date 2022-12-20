@@ -20,7 +20,7 @@
         .form-left,
         .form-right {
             border-radius: 5px;
-            padding: 20px;
+            padding-left: 20px;
             /* border: solid; */
         }
 
@@ -29,12 +29,12 @@
             height: 100%;
             display: grid;
             grid-template-columns: 1fr 200px;
-            grid-gap: 20px;
+            /* grid-gap: 20px; */
         }
 
         .div-textarea {
             width: 95%;
-            height: 80%;
+            height: 75%;
             padding: 1em;
             border: solid;
         }
@@ -80,7 +80,7 @@
     <div class='root'>
         <div class='root-head'>
             <h1>OpenAI API Demo</h1>
-            <p>连续提问可能会有bug, 显示代码(特殊字符)时可能会有bug</p>
+            <p>提交后请稍等, 将一次性返回所有内容; &nbsp;连续提问可能会有bug, 显示代码(特殊字符)时可能会有bug</p>
         </div>
         <form action='http://107.174.254.164:3000' method='post'>
             <div class='form-left'>
