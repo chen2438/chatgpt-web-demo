@@ -12,6 +12,11 @@
             margin: 2em auto;
         }
 
+        .root-head {
+            /* border: solid; */
+            padding-left: 1.5em;
+        }
+
         .form-left,
         .form-right {
             border-radius: 5px;
@@ -73,8 +78,10 @@
 
 <body>
     <div class='root'>
-        <h1>OpenAI API Demo</h1>
-        <p>连续提问可能会有bug, 显示代码(特殊字符)时可能会有bug</p>
+        <div class='root-head'>
+            <h1>OpenAI API Demo</h1>
+            <p>连续提问可能会有bug, 显示代码(特殊字符)时可能会有bug</p>
+        </div>
         <form action='http://107.174.254.164:3000' method='post'>
             <div class='form-left'>
                 <div class='div-textarea'>
