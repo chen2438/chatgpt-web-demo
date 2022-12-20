@@ -48,30 +48,26 @@
             outline: 0;
         }
 
-        input[type='submit'] {
-            /* height: 10%; */
+        input[type='submit'],
+        button {
             background-color: #10a37f;
             border: none;
             color: white;
-            padding: 10px 18px;
+            padding: 8px 14px;
             text-align: center;
             font-size: 16px;
-            font-weight: bold;
-            border-radius: 5px;
+            border-radius: 3px;
             cursor: pointer;
         }
 
-        input[type='submit']:hover {
+        button {
+            color: rgb(53, 53, 63);
+            background-color: rgb(236, 236, 241);
+        }
+
+        input[type='submit']:hover,
+        button:hover {
             opacity: 0.7;
-            background-color: #10a37f;
-            border: none;
-            color: white;
-            padding: 10px 18px;
-            text-align: center;
-            font-size: 16px;
-            font-weight: bold;
-            border-radius: 5px;
-            cursor: pointer;
         }
     </style>
 </head>
@@ -80,7 +76,7 @@
     <div class='root'>
         <div class='root-head'>
             <h1>OpenAI API Demo</h1>
-            <p>提交后请稍等, 将一次性返回所有内容; &nbsp;连续提问可能会有bug, 显示代码(特殊字符)时可能会有bug</p>
+            <p>提交后请稍等, 将一次性返回所有内容; &nbsp;连续提问可能会有bug, 显示代码(特殊字符)时可能会有bug; &nbsp;清空时请点击refresh按钮, 请勿直接刷新页面</p>
         </div>
         <form action='http://107.174.254.164:3000' method='post'>
             <div class='form-left'>
@@ -89,6 +85,12 @@
                 </div>
                 <br>
                 <input type='submit' value='submit' />
+                <button onclick="refresh();">refresh</button>
+                <script>
+                    function refresh() {
+                        window.location.href = 'http://107.174.254.164/openai/';
+                    }
+                </script>
             </div>
             <div class='form-right'>
                 <label><b>Mode</b></label><br>
