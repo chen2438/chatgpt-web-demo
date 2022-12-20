@@ -19,33 +19,31 @@ http.createServer(function (req, res) {
                 res.write(html1);
                 res.write(html2);
                 res.end();
-                return;
-            }
-            console.log(body.prompt);
-            const { Configuration, OpenAIApi } = require("openai");
-            const configuration = new Configuration({
-                apiKey: process.env.OPENAI_API_KEY,
-            });
-            const openai = new OpenAIApi(configuration);
-            const response = await openai.createCompletion({
-                model: "text-davinci-003",
-                prompt: body.prompt,
-                max_tokens: Number(body.max_tokens),
-                temperature: Number(body.temperature),
-            });
-            try {
-                console.log(response.data.choices[0].text);
-                res.write(html1);
-                res.write(he.encode(body.prompt));
-                // res.write("<b>");
-                res.write(he.encode(response.data.choices[0].text));
-                res.write("\n");
-                res.write(html2);
-                res.end();
-            } catch (err) {
-                console.log(err);
-                res.write(err);
-                res.end();
+            } else {
+                console.log(body.prompt);
+                const { Configuration, OpenAIApi } = require("openai");
+                const configuration = new Configuration({
+                    apiKey: process.env.OPENAI_API_KEY,
+                });
+                const openai = new OpenAIApi(configuration);
+                const response = await openai.createCompletion({
+                    model: "text-davinci-003",
+                    prompt: body.prompt,
+                    max_tokens: Number(body.max_tokens),
+                    temperature: Number(body.temperature),
+                });
+                try {
+                    console.log(response.data.choices[0].text);
+                    res.write(html1);
+                    res.write(body.prompt);
+                    res.write(response.data.choices[0].text);
+                    res.write(html2);
+                    res.end();
+                } catch (err) {
+                    console.log(err);
+                    res.write(err);
+                    res.end();
+                }
             }
         }
         f();
