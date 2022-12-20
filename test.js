@@ -21,6 +21,7 @@ http.createServer(function (req, res) {
                 res.end();
                 return;
             }
+            console.log(body.prompt);
             const { Configuration, OpenAIApi } = require("openai");
             const configuration = new Configuration({
                 apiKey: process.env.OPENAI_API_KEY,
@@ -46,8 +47,9 @@ http.createServer(function (req, res) {
                 res.write(err);
                 res.end();
             }
-
         }
         f();
     });
 }).listen(3000);
+
+console.log("Running in port 3000.")
