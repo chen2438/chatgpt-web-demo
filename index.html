@@ -73,6 +73,12 @@
 </head>
 
 <body>
+    <script>
+        $(function () {
+            //禁用“确认重新提交表单”
+            window.history.replaceState(null, null, window.location.href);
+        })
+    </script>
     <div class='root'>
         <div class='root-head'>
             <h1>OpenAI API Demo</h1>
@@ -85,7 +91,7 @@
                 </div>
                 <br>
                 <input type='submit' value='submit' />
-                <button onclick='refresh();'>refresh</button>
+                <button type='button' onclick='refresh();'>refresh</button>
                 <script>
                     function refresh() {
                         window.location.href = 'http://107.174.254.164/openai/';
