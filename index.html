@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html lang='en-us'>
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width'>
     <title>OpenAI API Demo</title>
     <style>
         .root {
@@ -17,10 +17,6 @@
             padding: 10px;
             border: solid;
         }
-
-        /* label input {
-            display: block;
-        } */
 
         form {
             width: 100%;
@@ -37,7 +33,7 @@
             height: 90%;
         }
 
-        input[type="submit"] {
+        input[type='submit'] {
             /* height: 10%; */
             background-color: #10a37f;
             border: none;
@@ -52,27 +48,27 @@
 </head>
 
 <body>
-    <div class="root">
+    <div class='root'>
         <h1>OpenAI API Demo</h1>
-        <form action="http://107.174.254.164:3000" method="post">
-            <div class="form-left">
-                <textarea name="prompt"></textarea><br>
-                <input type="submit" value="submit" />
+        <form action='http://107.174.254.164:3000' method='post'>
+            <div class='form-left'>
+                <textarea name='prompt'></textarea><br>
+                <input type='submit' value='submit' />
             </div>
-            <div class="form-right">
+            <div class='form-right'>
                 <label><b>Mode</b></label><br>
-                <label for="mode">Complete</label>
-                <input type="radio" name="mode" value="complete" checked><br>
+                <label for='mode'>Complete</label>
+                <input type='radio' name='mode' value='complete' checked><br>
 
                 <label><b>Model</b></label><br>
-                <label for="model">text-davinci-003</label>
-                <input type="radio" name="model" value="text-davinci-003" checked><br>
+                <label for='model'>text-davinci-003</label>
+                <input type='radio' name='model' value='text-davinci-003' checked><br>
 
-                <label for="temperature"><b>Temperature</b></label><br>
-                <input type="text" name="temperature" value="0.7"><br>
+                <label for='temperature'><b>Temperature</b></label><br>
+                <input type='text' name='temperature' value='0.7'><br>
 
-                <label for="max_tokens"><b>Maximum length</b></label><br>
-                <input type="text" name="max_tokens" value="2048"><br>
+                <label for='max_tokens'><b>Maximum length</b></label><br>
+                <input type='text' name='max_tokens' value='2048'><br>
             </div>
         </form>
     </div>

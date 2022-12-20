@@ -1,5 +1,10 @@
 var http = require('http');
 var querystring = require('querystring');
+var he = require('he');
+
+var html1 = "<!DOCTYPE html><html lang='en-us'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width'><title>OpenAI API Demo</title><style>        .root {            width: 90%;            height: 80vh;            margin: 2em auto;        }        .form>div {            border-radius: 5px;            padding: 10px;            border: solid;        }        form {            width: 100%;            height: 100%;            display: grid;            grid-template-columns: 1fr 200px;            grid-gap: 20px;                    }        textarea {            resize: none;            width: 100%;            height: 90%;        }        input[type='submit'] {                        background-color: #10a37f;            border: none;            color: white;            padding: 10px 18px;            text-align: center;            font-size: 16px;            font-weight: bold;            border-radius: 5px;        }</style></head><body><div class='root'><h1>OpenAI API Demo</h1><form action='http://107.174.254.164:3000' method='post'><div class='form-left'><textarea name='prompt'>"
+
+var html2 = "</textarea><br><input type='submit' value='submit' /></div><div class='form-right'><label><b>Mode</b></label><br><label for='mode'>Complete</label><input type='radio' name='mode' value='complete' checked><br><label><b>Model</b></label><br><label for='model'>text-davinci-003</label><input type='radio' name='model' value='text-davinci-003' checked><br><label for='temperature'><b>Temperature</b></label><br><input type='text' name='temperature' value='0.7'><br><label for='max_tokens'><b>Maximum length</b></label><br><input type='text' name='max_tokens' value='2048'><br></div></form></div></body></html>"
 
 http.createServer(function (req, res) {
     var body = "";
@@ -24,8 +29,10 @@ http.createServer(function (req, res) {
             });
             try {
                 console.log(response.data.choices[0].text);
-                res.write(response.data.choices[0].text);
-                res.write('<br>END');
+                res.write(html1);
+                res.write(he.encode(body.prompt));
+                res.write(he.encode(response.data.choices[0].text));
+                res.write(html2);
                 res.end();
             } catch (err) {
                 console.log(err);
