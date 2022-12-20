@@ -19,8 +19,8 @@ http.createServer(function (req, res) {
             const response = await openai.createCompletion({
                 model: "text-davinci-003",
                 prompt: body.prompt,
-                max_tokens: 20,
-                temperature: 0,
+                max_tokens: Number(body.max_tokens),
+                temperature: Number(body.temperature),
             });
             try {
                 console.log(response.data.choices[0].text);

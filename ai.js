@@ -7,7 +7,7 @@ async function f() {
     const response = await openai.createCompletion({
         model: "text-davinci-003",
         prompt: "Say this is a test",
-        max_tokens: 20,
+        max_tokens: 3000,
         temperature: 0,
     });
     try {
