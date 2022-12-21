@@ -37,8 +37,7 @@ http.createServer(function (req, res) {
                     res.write(html1);
                     res.write(body.prompt);
                     res.write(response.data.choices[0].text);
-                    res.write("\n");
-                    res.write(html2);
+                    res.write("\n" + html2);
                     res.end();
                 } catch (err) {
                     console.log(err);

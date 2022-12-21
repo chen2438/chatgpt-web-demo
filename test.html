@@ -7,22 +7,14 @@
 </head>
 
 <body>
-    <script>
-        const evtSource = new EventSource("http://107.174.254.164:3000", { withCredentials: true });
 
-        evtSource.onmessage = function (event) {
-            const newElement = document.createElement("li");
-            const eventList = document.getElementById("list");
-
-            newElement.innerHTML = "message: " + event.data;
-            eventList.appendChild(newElement);
-        }
-
-    </script>
-    <form action="http://107.174.254.164:3000" method="post">
-        <input type="submit">
+    <form>
+        <textarea name='prompt' id="prompt">123</textarea>
     </form>
-    <li id="list">list</li>
+    <script>
+        document.getElementById("prompt").value += "456";
+    </script>
+
 </body>
 
 </html>
