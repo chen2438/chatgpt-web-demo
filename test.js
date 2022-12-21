@@ -1,13 +1,13 @@
 var http = require('http');
 var querystring = require('querystring');
 
-async function getOpenAI(body) {//OpenAI API
+function getOpenAI(body) {//OpenAI API
     const { Configuration, OpenAIApi } = require("openai");
     const configuration = new Configuration({
         apiKey: process.env.OPENAI_API_KEY,
     });
     const openai = new OpenAIApi(configuration);
-    const response = await openai.createCompletion({
+    const response = openai.createCompletion({
         model: "text-davinci-003",
         prompt: body.prompt,
         max_tokens: Number(body.max_tokens),
