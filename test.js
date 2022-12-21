@@ -25,10 +25,7 @@ http.createServer(function (req, res) {
             });
             try {
                 console.log(response.data);
-                res.write(html1);
-                res.write(body.prompt);
                 res.write(response.data);
-                res.write("\n" + html2);
                 res.end();
             } catch (err) {
                 console.log(err);
