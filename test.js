@@ -9,7 +9,9 @@ http.createServer(function (req, res) {
     });
     req.on('end', function () {
         body = querystring.parse(body);
-        res.writeHead(200, { 'Content-Type': 'application/json; charset=utf8' });
+        res.writeHead(200, {
+            'Content-Type': 'application/json; charset=utf8', 'Access-Control-Allow-Origin': '*'
+        });
         async function f() {
             console.log(body.prompt);
             const { Configuration, OpenAIApi } = require("openai");
