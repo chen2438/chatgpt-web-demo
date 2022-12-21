@@ -74,10 +74,6 @@
 
 <body>
     <script>
-        // $(function () {
-        //     //禁用“确认重新提交表单”
-        //     window.history.replaceState(null, null, window.location.href);
-        // })
         function postData() {
             var xhr = new XMLHttpRequest();
             xhr.open("POST", "http://107.174.254.164:3000", true);
@@ -100,7 +96,7 @@
     <div class='root'>
         <div class='root-head'>
             <h1>OpenAI API Demo</h1>
-            <p>提交后请稍等, 将一次性返回所有内容; &nbsp;连续提问可能会有bug, 显示代码(特殊字符)时可能会有bug; &nbsp;清空时请点击refresh按钮, 请勿直接刷新页面</p>
+            <p>提交后请稍等, 将一次性返回所有内容; &nbsp;连续提问可能会有bug, 显示代码(特殊字符)时可能会有bug; </p>
         </div>
         <form id="form">
             <div class='form-left'>
