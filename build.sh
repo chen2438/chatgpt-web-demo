@@ -1,1 +1,1 @@
-cd /var/www/html && rm -rf openai && git clone https://github.com/chen2438/openai.git && cd openai && npm i openai && npm i he
+cd /var/www/html && rm -rf chatgpt-web-demo && git clone https://github.com/chen2438/chatgpt-web-demo.git && cd chatgpt-web-demo && npm i openai && node server.js
