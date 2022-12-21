@@ -1,7 +1,7 @@
 var http = require('http');
 var querystring = require('querystring');
 
-async function getOpenAI(body) {//OpenAI API
+async function getOpenAI(res, body) {//OpenAI API
     const { Configuration, OpenAIApi } = require("openai");
     const configuration = new Configuration({
         apiKey: process.env.OPENAI_API_KEY,
@@ -32,7 +32,7 @@ http.createServer(function (req, res) {
         res.writeHead(200, {//返回json格式, 允许跨域
             'Content-Type': 'application/json; charset=utf8', 'Access-Control-Allow-Origin': '*'
         });
-        getOpenAI(body);
+        getOpenAI(res, body);
     });
 }).listen(3000);
 
