@@ -1,19 +1,23 @@
 var http = require('http');
 var querystring = require('querystring');
 
-function getOpenAI(body) {//OpenAI API
+async function getOpenAI(body) {//OpenAI API
     const { Configuration, OpenAIApi } = require("openai");
     const configuration = new Configuration({
         apiKey: process.env.OPENAI_API_KEY,
     });
     const openai = new OpenAIApi(configuration);
-    const response = openai.createCompletion({
+    const response = await openai.createCompletion({
         model: "text-davinci-003",
         prompt: body.prompt,
         max_tokens: Number(body.max_tokens),
         temperature: Number(body.temperature),
     });
-    return response.data;
+    // return response.data;
+    console.log("返回值:");
+    console.log(response.data);
+    res.write(JSON.stringify(response.data));
+    res.end();
 }
 
 http.createServer(function (req, res) {
@@ -28,11 +32,7 @@ http.createServer(function (req, res) {
         res.writeHead(200, {//返回json格式, 允许跨域
             'Content-Type': 'application/json; charset=utf8', 'Access-Control-Allow-Origin': '*'
         });
-        var resData = getOpenAI(body);
-        console.log("返回值:");
-        console.log(resData);
-        res.write(JSON.stringify(resData));
-        res.end();
+        getOpenAI(body);
     });
 }).listen(3000);
 
