@@ -13,7 +13,7 @@ http.createServer(function (req, res) {
     });
     req.on('end', function () {
         body = querystring.parse(body);
-        res.writeHead(200, { 'Content-Type': 'text/event-stream; charset=utf8' });
+        res.writeHead(200, { 'Content-Type': 'text/html; charset=utf8' });
         async function f() {
             if (!body.prompt) {
                 res.write(html1);
@@ -29,17 +29,16 @@ http.createServer(function (req, res) {
                 const response = await openai.createCompletion({
                     model: "text-davinci-003",
                     prompt: body.prompt,
-                    stream: true,
                     max_tokens: Number(body.max_tokens),
                     temperature: Number(body.temperature),
                 });
                 try {
                     console.log(response.data.choices[0].text);
-                    // res.write(html1);
-                    // res.write(body.prompt);
+                    res.write(html1);
+                    res.write(body.prompt);
                     res.write(response.data.choices[0].text);
                     res.write("\n");
-                    // res.write(html2);
+                    res.write(html2);
                     res.end();
                 } catch (err) {
                     console.log(err);
