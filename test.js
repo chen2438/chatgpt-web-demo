@@ -23,12 +23,14 @@ http.createServer(function (req, res) {
     });
     req.on('end', function () {
         body = querystring.parse(body);//解析参数
-        console.log("获取到POST参数:\n" + body);
+        console.log("获取到POST参数:");
+        console.log(body);
         res.writeHead(200, {//返回json格式, 允许跨域
             'Content-Type': 'application/json; charset=utf8', 'Access-Control-Allow-Origin': '*'
         });
         var resData = getOpenAI(body);
-        console.log("返回值:\n" + resData);
+        console.log("返回值:");
+        console.log(resData);
         res.write(JSON.stringify(resData));
         res.end();
     });
