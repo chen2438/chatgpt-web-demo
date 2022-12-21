@@ -38,4 +38,4 @@ http.createServer(function (req, res) {
     });
 }).listen(3000);
 
-console.log("\nRunning in port 3000.\n")
+console.log("\n正在运行, 监听 3000 端口.\n")
