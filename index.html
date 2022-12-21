@@ -5,7 +5,7 @@
     <meta charset='utf-8'>
     <meta name='viewport' content='width=device-width'>
     <link rel="shortcut icon" href="https://web-1303840613.cos.ap-shanghai.myqcloud.com/img/icon.jpg" />
-    <title>OpenAI API Demo</title>
+    <title>OpenAI Playground Demo</title>
     <style>
         .root {
             width: 90%;
@@ -71,7 +71,7 @@
     <script>
         function postData() {
             var xhr = new XMLHttpRequest();
-            xhr.open("POST", "http://107.174.254.164:3000", true);
+            xhr.open("POST", window.location.hostname + ":3000", true);
             xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
             xhr.onload = function () {
                 if (this.status === 200) {
@@ -90,7 +90,7 @@
     </script>
     <div class='root'>
         <div class='root-head'><!--顶部-->
-            <h1>OpenAI API Demo</h1>
+            <h1>OpenAI Playground Demo</h1>
             <p>提交后请稍等, 将一次性返回所有内容; &nbsp;连续提问可能会有bug; </p>
         </div>
         <form id="form">
