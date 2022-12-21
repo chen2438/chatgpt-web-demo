@@ -25,7 +25,7 @@ http.createServer(function (req, res) {
             });
             try {
                 console.log(response.data);
-                res.write(response.data);
+                res.write(JSON.stringify(response.data));
                 res.end();
             } catch (err) {
                 console.log(err);
