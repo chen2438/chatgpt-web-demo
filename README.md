@@ -1,6 +1,6 @@
 # OpenAI Web Demo
 
-![image-20221221223637798](https://picgo-1303840613.cos.ap-shanghai.myqcloud.com/media/image-20221221223637798.png)
+![image-20221221223637798](https://picgo-1303840613.cos.accelerate.myqcloud.com/media/image-20221221223637798.png)
 
 ## 安装
 
