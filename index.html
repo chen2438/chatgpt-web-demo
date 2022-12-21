@@ -91,7 +91,7 @@
     <div class='root'>
         <div class='root-head'><!--顶部-->
             <h1>OpenAI Playground Demo</h1>
-            <p>提交后请稍等, 将一次性返回所有内容; &nbsp;连续提问可能会有bug; </p>
+            <p>提交后请稍等, 将一次性返回所有内容(生成内容越多, 等待时间越久); &nbsp;连续提问可能会有bug; </p>
         </div>
         <form id="form">
             <div class='form-left'><!--左列-->
@@ -100,6 +100,7 @@
                 </div>
                 <br>
                 <button type="button" onclick='postData();' class="submit">submit</button>
+                <!--TODO:已提交,请稍等-->
             </div>
             <div class='form-right'><!--右列-->
                 <label><b>Mode</b></label><br>
