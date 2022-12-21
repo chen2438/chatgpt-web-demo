@@ -9,9 +9,10 @@ async function f() {
         prompt: "Say this is a test",
         max_tokens: 3000,
         temperature: 0,
+        server: true,
     });
     try {
-        console.log(response.data.choices[0].text);
+        console.log(response.data);
     } catch (err) {
         console.log(err);
     }
