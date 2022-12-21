@@ -14,8 +14,9 @@ async function getOpenAI(res, body) {//OpenAI API
         temperature: Number(body.temperature),
     });
     // return response.data;
-    console.log("返回值:");
+    console.log("返回值:\n");
     console.log(response.data);
+    console.log("\n");
     res.write(JSON.stringify(response.data));
     res.end();
 }
@@ -27,8 +28,9 @@ http.createServer(function (req, res) {
     });
     req.on('end', function () {
         body = querystring.parse(body);//解析参数
-        console.log("获取到POST参数:");
+        console.log("获取到POST参数:\n");
         console.log(body);
+        console.log("\n");
         res.writeHead(200, {//返回json格式, 允许跨域
             'Content-Type': 'application/json; charset=utf8', 'Access-Control-Allow-Origin': '*'
         });
@@ -36,4 +38,4 @@ http.createServer(function (req, res) {
     });
 }).listen(3000);
 
-console.log("Running in port 3000.")
+console.log("\nRunning in port 3000.\n")
