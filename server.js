@@ -1,4 +1,6 @@
-var http = require('http');
+const https = require('https');
+const fs = require('fs');
+const PORT = 2083;
 var querystring = require('querystring');
 
 async function getOpenAI(res, body) {//OpenAI API
@@ -36,7 +38,12 @@ async function getOpenAI(res, body) {//OpenAI API
     res.end();
 }
 
-http.createServer(function (req, res) {
+const options = {
+    key: fs.readFileSync('/root/.acme.sh/domain/domain.key'),
+    cert: fs.readFileSync('/root/.acme.sh/domain/fullchain.cer')
+};
+
+https.createServer(options, (req, res) => {
     var body = "";
     req.on('data', function (chunk) {//接收表单参数
         body += chunk;
@@ -48,6 +55,4 @@ http.createServer(function (req, res) {
         console.log("\n");
         getOpenAI(res, body);
     });
-}).listen(2083);
-
-console.log("\n正在运行, 监听 2083 端口.\n")
+}).listen(PORT, () => console.log(`正在运行, 监听 ${PORT} 端口.`));
