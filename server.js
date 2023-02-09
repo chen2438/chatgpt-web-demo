@@ -36,7 +36,7 @@ async function getOpenAI(res, body) {//OpenAI API
         res.writeHead(500, {//返回json格式, 允许跨域
             'Content-Type': 'application/json; charset=utf8', 'Access-Control-Allow-Origin': '*'
         });
-        res.write(err.message);
+        res.write(JSON.stringify(err));
     }
     res.end();
 }

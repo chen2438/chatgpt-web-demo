@@ -141,7 +141,8 @@
                     document.getElementById("btn").innerHTML = "提交";
                     document.getElementById("btn").style.backgroundColor = "#10a37f";
                 } else {
-                    document.getElementById("btn").innerHTML = response;
+                    var response = JSON.parse(this.response);
+                    document.getElementById("btn").innerHTML = response.message;
                     document.getElementById("btn").style.backgroundColor = "red";
                 }
             };
