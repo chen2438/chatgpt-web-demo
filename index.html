@@ -116,6 +116,8 @@
             }
             return -1;
         }
+        var id = getQueryID("id"), passwd = getQueryID("passwd");
+
         function postData() {
             document.getElementById("btn").innerHTML = "请稍等";
             document.getElementById("btn").style.backgroundColor = "grey";
@@ -135,7 +137,7 @@
                     document.getElementById("btn").innerHTML = "提交";
                     document.getElementById("btn").style.backgroundColor = "#10a37f";
                 } else {
-                    document.getElementById("btn").innerHTML = "服务器错误";
+                    document.getElementById("btn").innerHTML = "服务器错误 HTTP " + this.status;
                     document.getElementById("btn").style.backgroundColor = "red";
                 }
             };

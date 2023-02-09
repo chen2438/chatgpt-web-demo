@@ -3,9 +3,6 @@ var querystring = require('querystring');
 
 async function getOpenAI(res, body) {//OpenAI API
     try {
-        res.writeHead(200, {//返回json格式, 允许跨域
-            'Content-Type': 'application/json; charset=utf8', 'Access-Control-Allow-Origin': '*'
-        });
         const { Configuration, OpenAIApi } = require("openai");
         const configuration = new Configuration({
             apiKey: process.env.OPENAI_API_KEY,
@@ -17,11 +14,19 @@ async function getOpenAI(res, body) {//OpenAI API
             max_tokens: Number(body.max_tokens),
             temperature: Number(body.temperature),
         });
-        // return response.data;
-        console.log("返回值:\n");
-        console.log(response.data);
-        console.log("\n");
-        res.write(JSON.stringify(response.data));
+        res.writeHead(response.status, {//返回json格式, 允许跨域
+            'Content-Type': 'application/json; charset=utf8', 'Access-Control-Allow-Origin': '*'
+        });
+        if (response.status == 200) {
+            console.log("返回值:\n");
+            console.log(response.data);
+            console.log("\n");
+            res.write(JSON.stringify(response.data));
+        } else {
+            console.log("请求 OpenAI API 错误:\n");
+            console.log(response);
+            console.log("\n");
+        }
     } catch (err) {
         console.log(err);
         res.writeHead(500, {//返回json格式, 允许跨域
