@@ -19,6 +19,7 @@ async function getOpenAI(res, body) {//OpenAI API
         res.writeHead(response.status, {//返回json格式, 允许跨域
             'Content-Type': 'application/json; charset=utf8', 'Access-Control-Allow-Origin': '*'
         });
+        // console.log(response.status);
         if (response.status == 200) {
             console.log("返回值:\n");
             console.log(response.data);
@@ -30,7 +31,8 @@ async function getOpenAI(res, body) {//OpenAI API
             console.log("\n");
         }
     } catch (err) {
-        console.log(err);
+        console.log(err.code);
+        console.log(err.message);
         res.writeHead(500, {//返回json格式, 允许跨域
             'Content-Type': 'application/json; charset=utf8', 'Access-Control-Allow-Origin': '*'
         });
