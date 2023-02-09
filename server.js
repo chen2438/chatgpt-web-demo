@@ -3,6 +3,9 @@ var querystring = require('querystring');
 
 async function getOpenAI(res, body) {//OpenAI API
     try {
+        res.writeHead(200, {//返回json格式, 允许跨域
+            'Content-Type': 'application/json; charset=utf8', 'Access-Control-Allow-Origin': '*'
+        });
         const { Configuration, OpenAIApi } = require("openai");
         const configuration = new Configuration({
             apiKey: process.env.OPENAI_API_KEY,
@@ -19,12 +22,13 @@ async function getOpenAI(res, body) {//OpenAI API
         console.log(response.data);
         console.log("\n");
         res.write(JSON.stringify(response.data));
-        // res.end();
-        return 1;
     } catch (err) {
         console.log(err);
-        return -1;
+        res.writeHead(500, {//返回json格式, 允许跨域
+            'Content-Type': 'application/json; charset=utf8', 'Access-Control-Allow-Origin': '*'
+        });
     }
+    res.end();
 }
 
 http.createServer(function (req, res) {
@@ -37,19 +41,7 @@ http.createServer(function (req, res) {
         console.log("获取到POST参数:\n");
         console.log(body);
         console.log("\n");
-        var success = getOpenAI(res, body);
-        if (success == 1) {
-            res.writeHead(200, {//返回json格式, 允许跨域
-                'Content-Type': 'application/json; charset=utf8', 'Access-Control-Allow-Origin': '*'
-            });
-            res.end();
-        }
-        else {
-            res.writeHead(500, {//返回json格式, 允许跨域
-                'Content-Type': 'application/json; charset=utf8', 'Access-Control-Allow-Origin': '*'
-            });
-            res.end();
-        }
+        getOpenAI(res, body);
     });
 }).listen(3000);
 
