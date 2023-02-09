@@ -31,15 +31,12 @@ async function getOpenAI(res, body) {//OpenAI API
             console.log("\n");
         }
     } catch (err) {
-        console.log(err.code);
-        console.log("\n");
-        console.log(err.name);
-        console.log("\n");
         console.log(err.message);
         console.log("\n");
         res.writeHead(500, {//返回json格式, 允许跨域
             'Content-Type': 'application/json; charset=utf8', 'Access-Control-Allow-Origin': '*'
         });
+        res.write(err.message);
     }
     res.end();
 }
