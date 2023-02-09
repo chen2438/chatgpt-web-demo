@@ -143,7 +143,7 @@
                     document.getElementById("btn").style.backgroundColor = "#10a37f";
                 } else {
                     var response = JSON.parse(this.response);
-                    document.getElementById("btn").innerHTML = response.message;
+                    document.getElementById("btn").innerHTML = "500服务器错误, 请重试"
                     document.getElementById("btn").style.backgroundColor = "red";
                 }
                 document.getElementById("btn").disabled = false;
@@ -160,7 +160,7 @@
     <div class='root'>
         <div class='root-head'><!--顶部-->
             <div class="title">OpenAI Playground Demo</div>
-            <div class="tips">提交后请耐心等待(超过120s请重试); &nbsp;连续提问有bug; &nbsp; 遇到429错误请重试;</div>
+            <div class="tips">提交后请耐心等待(超过120s请重试); &nbsp;连续提问有bug; &nbsp; 遇到500错误请重试;</div>
         </div>
         <form id="form">
             <div class='form-left'><!--左列-->
