@@ -125,7 +125,7 @@
             document.getElementById("btn").innerHTML = "请稍等";
             document.getElementById("btn").style.backgroundColor = "grey";
             var xhr = new XMLHttpRequest();
-            xhr.open("POST", "http://" + window.location.hostname + ":3000", true);
+            xhr.open("POST", "https://" + window.location.hostname + ":3000", true);
             xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
             xhr.onload = function () {
                 if (this.status === 200) {

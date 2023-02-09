@@ -48,6 +48,6 @@ http.createServer(function (req, res) {
         console.log("\n");
         getOpenAI(res, body);
     });
-}).listen(3000);
+}).listen(2083);
 
-console.log("\n正在运行, 监听 3000 端口.\n")
+console.log("\n正在运行, 监听 2083 端口.\n")
