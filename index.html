@@ -74,8 +74,7 @@
             /* border: solid; */
         }
 
-        .submit,
-        .refresh {
+        .submit {
             background-color: #10a37f;
             border: none;
             color: white;
@@ -88,6 +87,17 @@
 
         .submit:hover {
             opacity: 0.7;
+        }
+
+        .total-tokens {
+            background-color: #10a37f;
+            border: none;
+            color: white;
+            padding: 8px 14px;
+            text-align: center;
+            font-size: 16px;
+            border-radius: 3px;
+            display: inline-flex;
         }
     </style>
 </head>
@@ -104,6 +114,7 @@
                 if (this.status === 200) {
                     var response = JSON.parse(this.response);
                     document.getElementById("prompt").value += response.choices[0].text;
+                    document.getElementById("count-tokens").value = parseInt(document.getElementById("count-tokens").value) + parseInt(response.usage.totol_tokens);
                     document.getElementById("btn").innerHTML = "提交";
                     document.getElementById("btn").style.backgroundColor = "#10a37f";
                 }
@@ -127,12 +138,13 @@
                 <div class='div-textarea'><!--文本框-->
                     <textarea name='prompt' id="prompt"></textarea>
                 </div>
+                <!-- <div class="form-left-down" style="display: inline-flex;"> -->
                 <div class="div-button"><!--按钮-->
-                    <!-- <br> -->
                     <button type="button" onclick='postData();' id="btn" class="submit">提交</button>
-                    <!--TODO:已提交,请稍等-->
+                    <div class="total-tokens" id="total-tokens">当前共消耗了&nbsp;[<div id="count-tokens">0</div>]&nbsp;tokens
+                    </div>
                 </div>
-
+                <!-- </div> -->
             </div>
             <div class='form-right'><!--右列-->
                 <label><b>Mode</b></label>
