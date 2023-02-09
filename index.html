@@ -115,6 +115,8 @@
                     var response = JSON.parse(this.response);
                     document.getElementById("prompt").value += response.choices[0].text;
                     document.getElementById("count-tokens").innerHTML = parseInt(document.getElementById("count-tokens").innerHTML) + parseInt(response.usage.totol_tokens);
+                    console.log(response.usage);
+                    console.log(response.usage.totol_tokens);
                     document.getElementById("btn").innerHTML = "提交";
                     document.getElementById("btn").style.backgroundColor = "#10a37f";
                 }
