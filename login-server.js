@@ -28,7 +28,7 @@ function requireLogin(req, res, next) {
 }
 
 // Login route
-app.post("/login", (req, res) => {
+app.post("/chat/login", (req, res) => {
     // Check if the username and password are valid
     const username = req.body.username;
     const password = req.body.password;
@@ -44,7 +44,7 @@ app.post("/login", (req, res) => {
 });
 
 // Home page route
-app.get("/home", (req, res) => {
+app.get("/chat/home", (req, res) => {
     // Return the home page HTML
     res.send(`
 		<!DOCTYPE html>
@@ -60,20 +60,13 @@ app.get("/home", (req, res) => {
 });
 
 // Logout route
-app.get("/logout", (req, res) => {
+app.get("/chat/logout", (req, res) => {
     // Destroy the session and redirect to login page
     req.session.destroy();
     res.redirect("/login");
 });
 
-// Start the server
-app.listen(3000, () => {
-    console.log("Server listening on port 3000");
-});
-
-
-
-app.get("/login", (req, res) => {
+app.get("/chat/login", (req, res) => {
     // Return the login page HTML
     res.send(`
 		<!DOCTYPE html>
@@ -115,4 +108,9 @@ app.get("/login", (req, res) => {
         </body>
         </html>
     `);
+});
+
+// Start the server
+app.listen(3000, () => {
+    console.log("Server listening on port 3000");
 });
