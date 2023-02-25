@@ -1,7 +1,5 @@
 # OpenAI Web Demo
 
-**请注意, 本代码嵌入 Google AdSense 广告服务, 请自行删除或替换!**
-
 ![image-20221221223637798](https://media.opennet.top/i/2023/01/08/63babd909b3ca.png)
 
 ## TODO
