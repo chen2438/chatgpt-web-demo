@@ -3,11 +3,14 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const session = require("express-session");
 const fs = require('fs');
+const passport = require('passport');
+const GitHubStrategy = require('passport-github').Strategy;
 
 const app = express();
 app.use(cors());//允许跨域
 app.use(bodyParser.json());//解析JSON格式的请求体
 app.use(session({
+	name: 'id-login',
 	secret: "mySecretKey",
 	resave: false,
 	saveUninitialized: true
@@ -48,35 +51,66 @@ function requireLogin(req, res, next) {
 // Home page route
 app.get("/chat/home", requireLogin, (req, res) => {
 	// Return the home page HTML
-	res.send(`
-		<!DOCTYPE html>
-		<html>
-		<head>
-			<title>Home Page</title>
-		</head>
-		<body>
-			<h1>Welcome to the Home Page</h1>
-		</body>
-		</html>
-	`);
+	fs.readFile('home.html', 'utf8', (err, data) => {
+		if (err) throw err;
+		res.send(data);
+	});
 });
 
 // Logout route
 app.get("/chat/logout", (req, res) => {
 	// Destroy the session and redirect to login page
 	req.session.destroy();
-	res.redirect("/login");
+	res.redirect("/chat/login");
 });
 
 app.get("/chat/login", (req, res) => {
 	// Return the login page HTML
-	// 读取文件
 	fs.readFile('login.html', 'utf8', (err, data) => {
 		if (err) throw err;
-		// console.log(data);
 		res.send(data);
 	});
 });
+
+
+// GitHub OAuth 验证
+// 获取环境变量
+const GITHUB_CLIENT_ID = process.env.GITHUB_CLIENT_ID;
+const GITHUB_CLIENT_SECRET = process.env.GITHUB_CLIENT_SECRET;
+const CALLBACK_URL = process.env.CALLBACK_URL;
+
+app.use(session({
+	name: 'github-login',
+	secret: 'keyboard cat',
+	resave: true,
+	saveUninitialized: true
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.use(new GitHubStrategy({
+	clientID: GITHUB_CLIENT_ID,
+	clientSecret: GITHUB_CLIENT_SECRET,
+	callbackURL: CALLBACK_URL
+},
+	function (accessToken, refreshToken, profile, cb) {
+		User.findOrCreate({ githubId: profile.id }, function (err, user) {
+			return cb(err, user);
+		});
+	}
+));
+
+app.get('/chat/auth/github',
+	passport.authenticate('github'));
+
+app.get('/chat/auth/github/callback',
+	passport.authenticate('github', { failureRedirect: '/chat/login' }),
+	function (req, res) {
+		// Successful authentication, redirect home.
+		// req.session.user = user;
+		res.redirect('/chat/home');
+	});
+
 
 // Start the server
 app.listen(3000, () => {
