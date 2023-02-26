@@ -120,6 +120,8 @@ app.get('/chat/auth/github/callback',
 	function (req, res) {
 		// Successful authentication, redirect home.
 		// req.session.user = user;
+		const user = users.find(u => u.username === username && u.password === password);
+		req.session.user = user;
 		res.redirect('/chat/home');
 	});
 
