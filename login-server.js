@@ -15,7 +15,14 @@ app.use(session({
 	resave: false,
 	saveUninitialized: true
 }));
-
+app.use(session({
+	name: 'github-login',
+	secret: 'keyboard cat',
+	resave: true,
+	saveUninitialized: true
+}));
+app.use(passport.initialize());
+app.use(passport.session());
 // Mock user database
 const users = [
 	{ "username": "admin", "password": "admin", "id": "123" },
@@ -81,15 +88,6 @@ app.get("/chat/login", (req, res) => {
 const GITHUB_CLIENT_ID = process.env.GITHUB_CLIENT_ID;
 const GITHUB_CLIENT_SECRET = process.env.GITHUB_CLIENT_SECRET;
 const CALLBACK_URL = process.env.CALLBACK_URL;
-
-app.use(session({
-	name: 'github-login',
-	secret: 'keyboard cat',
-	resave: true,
-	saveUninitialized: true
-}));
-app.use(passport.initialize());
-app.use(passport.session());
 
 passport.use(new GitHubStrategy({
 	clientID: GITHUB_CLIENT_ID,
