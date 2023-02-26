@@ -40,11 +40,14 @@ app.post("/chat/login", (req, res) => {
 
 // Authentication middleware
 function requireLogin(req, res, next) {
-	if (req.session && req.session.user) {
-		next();
+	if (req.isAuthenticated()) {
+		return next();
+	} else if (req.session && req.session.user) {
+		return next();
 		//若没有调用 next() 方法，请求被挂起，客户端一直处于等待状态。
 	} else {
 		res.redirect("/chat/login");
+		return;
 	}
 }
 
