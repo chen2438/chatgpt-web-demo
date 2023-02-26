@@ -49,7 +49,11 @@ app.post("/chat/login", (req, res) => {
 function requireLogin(req, res, next) {
 	if (req.isAuthenticated()) {
 		return next();
-	} else if (req.session && req.session.user) {
+	} else {
+		res.redirect("/chat/login");
+		return;
+	}
+	if (req.session && req.session.user) {
 		return next();
 		//若没有调用 next() 方法，请求被挂起，客户端一直处于等待状态。
 	} else {
