@@ -22,7 +22,7 @@
             var password = document.getElementById("password").value;
             // Send a POST request to the server to check the username and password
             var xhr = new XMLHttpRequest();
-            xhr.open("POST", "/login");
+            xhr.open("POST", "/chat/login");
             xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
             xhr.onload = function () {
                 if (xhr.status === 200) {
@@ -30,7 +30,7 @@
                     window.location.href = "/chat/home";
                 } else {
                     // Login failed, display error message
-                    document.getElementById("message").innerHTML = "Invalid username or password";
+                    document.getElementById("message").innerHTML = "the server responded with a status of " + xhr.status;
                 }
             };
             xhr.send(JSON.stringify({ "username": username, "password": password }));
