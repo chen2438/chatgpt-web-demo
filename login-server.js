@@ -19,15 +19,6 @@ const users = [
 	{ "username": "bob", "password": "password2" }
 ];
 
-// Authentication middleware
-function requireLogin(req, res) {
-	if (req.session && req.session.user) {
-		// next();
-	} else {
-		res.redirect("/chat/login");
-	}
-}
-
 // Login route
 app.post("/chat/login", (req, res) => {
 	// Check if the username and password are valid
@@ -44,10 +35,18 @@ app.post("/chat/login", (req, res) => {
 	}
 });
 
+// Authentication middleware
+function requireLogin(req, res, next) {
+	if (req.session && req.session.user) {
+		// next();
+	} else {
+		res.redirect("/chat/login");
+	}
+}
+
 // Home page route
-app.get("/chat/home", (req, res) => {
+app.get("/chat/home", requireLogin, (req, res) => {
 	// Return the home page HTML
-	requireLogin(req, res);
 	res.send(`
 		<!DOCTYPE html>
 		<html>
