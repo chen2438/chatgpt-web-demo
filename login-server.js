@@ -40,7 +40,6 @@ function requireLogin(req, res, next) {
 	if (req.session && req.session.user) {
 		next();
 		//若没有调用 next() 方法，请求被挂起，客户端一直处于等待状态。
-		return;
 	} else {
 		res.redirect("/chat/login");
 	}
