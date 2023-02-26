@@ -108,14 +108,14 @@ passport.use(new GitHubStrategy({
 		return cb(null, user);
 	}));
 
-passport.serializeUser(function (user, cb) {
-	cb(null, user.id);
-});
+// passport.serializeUser(function (user, cb) {
+// 	cb(null, user.id);
+// });
 
-passport.deserializeUser(function (id, cb) {
-	const user = users.find(u => u.id === id);
-	cb(null, user);
-});
+// passport.deserializeUser(function (id, cb) {
+// 	const user = users.find(u => u.id === id);
+// 	cb(null, user);
+// });
 
 app.get('/chat/auth/github',
 	passport.authenticate('github'));
