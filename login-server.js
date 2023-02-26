@@ -18,8 +18,8 @@ app.use(session({
 
 // Mock user database
 const users = [
-	{ "username": "admin", "password": "admin" },
-	{ "username": "bob", "password": "password2" }
+	{ "username": "admin", "password": "admin", "id": "123" },
+	{ "username": "bob", "password": "password2", "id": "123" }
 ];
 
 // Login route
@@ -94,11 +94,23 @@ passport.use(new GitHubStrategy({
 	callbackURL: CALLBACK_URL
 },
 	function (accessToken, refreshToken, profile, cb) {
-		User.findOrCreate({ githubId: profile.id }, function (err, user) {
-			return cb(err, user);
-		});
-	}
-));
+		// Simulate finding or creating user by GitHub ID
+		const user = users.find(u => u.id === profile.id) || {
+			id: profile.id,
+			username: profile.username,
+			password: 'pass' + profile.id
+		};
+		return cb(null, user);
+	}));
+
+passport.serializeUser(function (user, cb) {
+	cb(null, user.id);
+});
+
+passport.deserializeUser(function (id, cb) {
+	const user = users.find(u => u.id === id);
+	cb(null, user);
+});
 
 app.get('/chat/auth/github',
 	passport.authenticate('github'));
