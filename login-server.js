@@ -15,14 +15,15 @@ app.use(session({
 	resave: false,
 	saveUninitialized: true
 }));
-app.use(session({
-	name: 'github-login',
-	secret: 'keyboard cat',
-	resave: true,
-	saveUninitialized: true
-}));
-app.use(passport.initialize());
-app.use(passport.session());
+// app.use(session({
+// 	name: 'github-login',
+// 	secret: 'keyboard cat',
+// 	resave: true,
+// 	saveUninitialized: true
+// }));
+// app.use(passport.initialize());
+// app.use(passport.session());
+
 // Mock user database
 const users = [
 	{ "username": "admin", "password": "admin", "id": "123" },
@@ -47,12 +48,12 @@ app.post("/chat/login", (req, res) => {
 
 // Authentication middleware
 function requireLogin(req, res, next) {
-	if (req.isAuthenticated()) {
-		return next();
-	} else {
-		res.redirect("/chat/login");
-		return;
-	}
+	// if (req.isAuthenticated()) {
+	// 	return next();
+	// } else {
+	// 	res.redirect("/chat/login");
+	// 	return;
+	// }
 	if (req.session && req.session.user) {
 		return next();
 		//若没有调用 next() 方法，请求被挂起，客户端一直处于等待状态。
@@ -89,6 +90,7 @@ app.get("/chat/login", (req, res) => {
 
 // GitHub OAuth 验证
 // 获取环境变量
+/*
 const GITHUB_CLIENT_ID = process.env.GITHUB_CLIENT_ID;
 const GITHUB_CLIENT_SECRET = process.env.GITHUB_CLIENT_SECRET;
 const CALLBACK_URL = process.env.CALLBACK_URL;
@@ -108,14 +110,14 @@ passport.use(new GitHubStrategy({
 		return cb(null, user);
 	}));
 
-// passport.serializeUser(function (user, cb) {
-// 	cb(null, user.id);
-// });
+passport.serializeUser(function (user, cb) {
+	cb(null, user.id);
+});
 
-// passport.deserializeUser(function (id, cb) {
-// 	const user = users.find(u => u.id === id);
-// 	cb(null, user);
-// });
+passport.deserializeUser(function (id, cb) {
+	const user = users.find(u => u.id === id);
+	cb(null, user);
+});
 
 app.get('/chat/auth/github',
 	passport.authenticate('github'));
@@ -126,7 +128,7 @@ app.get('/chat/auth/github/callback',
 		// Successful authentication, redirect home.
 		res.redirect('/chat/home');
 	});
-
+*/
 
 // Start the server
 app.listen(3000, () => {
