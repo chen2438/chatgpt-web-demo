@@ -1,5 +1,7 @@
 # OpenAI Web Demo
 
+**Note: 此 repo 不再更新，请查阅其他优秀的同类型 repo。**
+
 ![image-20221221223637798](https://media.opennet.top/i/2023/01/08/63babd909b3ca.png)
 
 ## TODO
